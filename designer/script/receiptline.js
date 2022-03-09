@@ -1277,7 +1277,6 @@ limitations under the License.
       if (p.lang.length > 0) {
         p.lang = ` xml:lang="${p.lang}"`;
       }
-      console.log(p);
       return (
         `<svg width="${this.svgWidth}px" height="${this.svgHeight}px" viewBox="0 0 ${this.svgWidth} ${this.svgHeight}" preserveAspectRatio="xMinYMin meet" ` +
         `xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">${p.style}` +
