@@ -16,21 +16,21 @@ limitations under the License.
 
 // QR Code is a registered trademark of DENSO WAVE INCORPORATED.
 
-const receiptline = require('receiptline');
-const express = require('express');
+const receiptline = require("receiptline");
+const express = require("express");
 const app = express();
 
 const printer = {
-    cpl: 48,
-    encoding: 'cp932',
-    upsideDown: true,
-    spacing: true,
-    command: 'escpos'
+  cpl: 48,
+  encoding: "shiftjis",
+  upsideDown: true,
+  spacing: true,
+  command: "escpos",
 };
 
 const order = () => `{width:*; border:line}
 ^^^オンライン注文
-${new Date().toLocaleString('ja')}
+${new Date().toLocaleString("ja")}
 {width:4,*}
 ---
 |^^^2|^^ハンバーガー
@@ -43,19 +43,19 @@ ${new Date().toLocaleString('ja')}
 {code:1234567890; option:code128,2,72,hri}`;
 
 let data = order();
-setInterval(() => data = order(), 30000);
+setInterval(() => (data = order()), 30000);
 
 let jobid = 1;
 
 app.use(express.urlencoded({ extended: true }));
-app.post('/sdp', (req, res) => {
-    switch (req.body.ConnectionType) {
-        case 'GetRequest':
-            if (data.length > 0) {
-                const command = receiptline.transform(data, printer);
-                // remove ESC @ (initialize printer) GS a 0 (disable automatic status back)
-                const hex = Buffer.from(command, 'binary').toString('hex', 5);
-                const xml = `<?xml version="1.0" encoding="utf-8"?>
+app.post("/sdp", (req, res) => {
+  switch (req.body.ConnectionType) {
+    case "GetRequest":
+      if (data.length > 0) {
+        const command = receiptline.transform(data, printer);
+        // remove ESC @ (initialize printer) GS a 0 (disable automatic status back)
+        const hex = Buffer.from(command, "binary").toString("hex", 5);
+        const xml = `<?xml version="1.0" encoding="utf-8"?>
                 <PrintRequestInfo Version="2.00">
                     <ePOSPrint>
                         <Parameter>
@@ -70,22 +70,22 @@ app.post('/sdp', (req, res) => {
                         </PrintData>
                     </ePOSPrint>
                 </PrintRequestInfo>`;
-                res.status(200).type('text/xml; charset=utf-8').send(xml);
-                data = '';
-            } else {
-                res.end();
-            }
-            break;
-        case 'SetResponse':
-            console.log(req.body.ResponseFile);
-            res.end();
-            break;
-        default:
-            res.end();
-            break;
-    }
+        res.status(200).type("text/xml; charset=utf-8").send(xml);
+        data = "";
+      } else {
+        res.end();
+      }
+      break;
+    case "SetResponse":
+      console.log(req.body.ResponseFile);
+      res.end();
+      break;
+    default:
+      res.end();
+      break;
+  }
 });
 app.listen(8080, () => {
-    // enable Server Direct Print and set the URL to "http://server-ip-address:8080/sdp"
-    console.log('Server running at http://localhost:8080/');
+  // enable Server Direct Print and set the URL to "http://server-ip-address:8080/sdp"
+  console.log("Server running at http://localhost:8080/");
 });

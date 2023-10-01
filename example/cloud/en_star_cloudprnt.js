@@ -16,21 +16,21 @@ limitations under the License.
 
 // QR Code is a registered trademark of DENSO WAVE INCORPORATED.
 
-const receiptline = require('receiptline');
-const express = require('express');
+const receiptline = require("receiptline");
+const express = require("express");
 const app = express();
 
 const printer = {
-    cpl: 48,
-    encoding: 'cp437',
-    upsideDown: true,
-    spacing: true,
-    command: 'starsbcs'
+  cpl: 48,
+  encoding: "multilingual",
+  upsideDown: true,
+  spacing: true,
+  command: "starsbcs",
 };
 
 const order = () => `{width:*}
 ^^^Online Order
-${new Date().toLocaleString('en')}
+${new Date().toLocaleString("en")}
 {width:4,*}
 ---
 |^^^2|^^Hamburger
@@ -42,33 +42,37 @@ ${new Date().toLocaleString('en')}
 {code:1234567890; option:code128,2,72,hri}`;
 
 let data = order();
-setInterval(() => data = order(), 30000);
+setInterval(() => (data = order()), 30000);
 
 let jobid = 1;
 
-app.post('/cloudprnt', (req, res) => {
-    if (data.length > 0) {
-        res.json({ jobReady: true, mediaTypes: [ 'application/vnd.star.starprnt' ], jobToken: `${jobid++}` });
-    } else {
-        res.json({ jobReady: false });
-    }
-})
-app.get('/cloudprnt', (req, res) => {
-    if (data.length > 0) {
-        const command = receiptline.transform(data, printer);
-        // remove ESC @ (command initialization) ESC GS a 0 (disable status transmission)
-        const bin = Buffer.from(command.slice(6), 'binary');
-        res.status(200).type('application/vnd.star.starprnt').send(bin);
-        data = '';
-    } else {
-        res.status(404).end();
-    }
+app.post("/cloudprnt", (req, res) => {
+  if (data.length > 0) {
+    res.json({
+      jobReady: true,
+      mediaTypes: ["application/vnd.star.starprnt"],
+      jobToken: `${jobid++}`,
+    });
+  } else {
+    res.json({ jobReady: false });
+  }
 });
-app.delete('/cloudprnt', (req, res) => {
-    console.log(req.query);
-    res.end();
+app.get("/cloudprnt", (req, res) => {
+  if (data.length > 0) {
+    const command = receiptline.transform(data, printer);
+    // remove ESC @ (command initialization) ESC GS a 0 (disable status transmission)
+    const bin = Buffer.from(command.slice(6), "binary");
+    res.status(200).type("application/vnd.star.starprnt").send(bin);
+    data = "";
+  } else {
+    res.status(404).end();
+  }
+});
+app.delete("/cloudprnt", (req, res) => {
+  console.log(req.query);
+  res.end();
 });
 app.listen(8080, () => {
-    // enable CloudPRNT and set the URL to "http://server-ip-address:8080/cloudprnt"
-    console.log('Server running at http://localhost:8080/');
+  // enable CloudPRNT and set the URL to "http://server-ip-address:8080/cloudprnt"
+  console.log("Server running at http://localhost:8080/");
 });

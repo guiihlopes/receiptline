@@ -1,6 +1,78 @@
 # Changelog
 
-## [Unreleased]
+## [1.15.0] - 2023-02-20
+### Added
+- Print margin
+- Initial value setting by URL query string to the designer
+
+## [1.14.0] - 2022-12-12
+### Added
+- "starimpact" for Star impact printers
+
+## [1.13.1] - 2022-11-16
+### Fixed
+- Paper width of preview in the designer
+- The designer and an example to enable PNG output
+- Printer configuration example
+
+## [1.13.0] - 2022-11-09
+### Added
+- Landscape orientation
+- "epson" alias for escpos
+- "generic" for generic escpos
+- "text" for plain text output
+- Example of receipt
+
+### Changed
+- To accept extended printer configurations
+
+## [1.12.0] - 2022-10-20
+### Added
+- Image method with reduced parameters to command objects
+- Barcode generator
+
+### Changed
+- CODE39 / ITF / Codabar (NW-7) barcode width for display
+
+## [1.11.3] - 2022-10-12
+### Fixed
+- Text placement of barcodes for display
+
+## [1.11.2] - 2022-10-08
+### Fixed
+- A bug in the image upside down printing on Fujitsu command object
+
+## [1.11.1] - 2022-09-28
+### Fixed
+- UPC / EAN barcodes for escpos family to automatically correct check digit errors
+- CODE39 / ITF / Codabar (NW-7) barcode width for star family
+
+## [1.11.0] - 2022-09-07
+### Changed
+- QR code for printing to the same image as for display
+- Underline on command object of escpos family
+
+## [1.10.2] - 2022-09-02
+### Fixed
+- Codabar (NW-7) start/stop characters on Citizen command object
+
+## [1.10.1] - 2022-08-22
+### Fixed
+- Code128 symbol width to be minimized
+- Empty string in barcode / 2D code
+
+## [1.10.0] - 2022-06-13
+### Added
+- TypeScript typings
+
+### Fixed
+- JSDoc annotations
+- Type conversion
+
+## [1.9.0] - 2022-04-16
+### Added
+- Support for image processing module "sharp"
+- Thai character support
 
 ## [1.8.0] - 2022-03-08
 ### Added

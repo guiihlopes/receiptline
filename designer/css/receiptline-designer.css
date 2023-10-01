@@ -15,99 +15,101 @@ limitations under the License.
 */
 
 body {
-    background-color: #eee;
+  background-color: #eee;
 }
 header {
-    display: flex;
-    justify-content: space-around;
-    font-size: small;
-    user-select: none;
+  display: flex;
+  justify-content: space-around;
+  font-size: small;
+  user-select: none;
 }
 main {
-    display: flex;
-    justify-content: start;
+  display: flex;
+  justify-content: start;
 }
 textarea {
-    color: #fff;
-    background-color: #000;
-    font-family: monospace;
-    font-size: 20px;
-    resize: none;
-    overflow-y: scroll;
+  color: #fff;
+  background-color: #000;
+  font-family: monospace;
+  font-size: 20px;
+  resize: none;
+  overflow-y: scroll;
 }
 section {
-    flex: 0 0 auto;
-    height: 80vh;
-    overflow-y: scroll;
+  flex: 0 0 auto;
+  height: 80vh;
+  overflow-y: scroll;
 }
 details {
-    font-size: x-small;
-    padding: 1px;
+  font-size: x-small;
+  padding: 1px;
 }
 summary {
-    font-size: small;
-    font-weight: bold;
-    background-color: #ccc;
+  font-size: small;
+  font-weight: bold;
+  background-color: #ccc;
 }
 article {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 figcaption {
-    font-weight: bold;
-    font-style: italic;
+  font-weight: bold;
+  font-style: italic;
 }
 figure img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 footer {
-    font-size: x-small;
-    text-align: center;
+  font-size: x-small;
+  text-align: center;
 }
-.receipt {
-    width: 576px;
-    padding: 12px;
-    background-color: #fff;
+.paper {
+  padding: 12px;
+  background-color: #fff;
+}
+.paper > div {
+  overflow: hidden;
 }
 .invalid {
-    background-color: #faa;
+  background-color: #faa;
 }
 .nolist {
-    list-style-type: none;
+  list-style-type: none;
 }
 .dialog {
-    display: none;
-    user-select: none;
+  display: none;
+  user-select: none;
 }
 .note {
-    font-size: x-small;
+  font-size: x-small;
 }
 .dialog > div:first-child {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    opacity:0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.5;
 }
 .dialog > div:last-child {
-    position: absolute;
-    padding: 1em;
-    background-color: #eee;
+  position: absolute;
+  padding: 1em;
+  background-color: #eee;
 }
 .dialog hr + div {
-    text-align: center;
+  text-align: center;
 }
 .tooltip[data-tooltip]:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    border-radius: 3px;
-    padding: 3px;
-    color: #fff;
-    background-color: #777;
+  content: attr(data-tooltip);
+  position: absolute;
+  border-radius: 3px;
+  padding: 3px;
+  color: #fff;
+  background-color: #777;
 }
 .hidden {
-    display: none;
+  display: none;
 }
