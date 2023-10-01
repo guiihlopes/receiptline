@@ -1312,9 +1312,10 @@ limitations under the License.
     // finish printing:
     close: function () {
       const p = {
-        font: "monospace",
+        font: `'Source Sans Pro', 'Courier New', 'Courier', monospace`,
         size: this.charWidth * 2,
-        style: "",
+        style:
+          '@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");',
         lang: "",
       };
       switch (this.textEncoding) {
@@ -1348,10 +1349,10 @@ limitations under the License.
           p.lang = "th";
           break;
         default:
-          p.font = `'Courier Prime', 'Courier New', 'Courier', monospace`;
+          p.font = `'Source Sans Pro', 'Courier New', 'Courier', monospace`;
           p.size -= 2;
           p.style =
-            '@import url("https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap");';
+            '@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");';
           break;
       }
       if (p.style.length > 0) {
